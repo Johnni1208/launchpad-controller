@@ -4,4 +4,7 @@ Current functionality:
   - Open Youtube
   - Open Netflix
   - Open Spotify
+    - Play/Pause
+    - Next Track
+    - Previous Track
   
