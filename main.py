@@ -3,7 +3,10 @@ from pygame import time as time
 
 from buttons.youtubeButton import YoutubeButton
 from buttons.netflixButton import NetflixButton
-from buttons.spotifyButtons import SpotifyMainButton
+from buttons.spotifyButton import SpotifyMainButton
+from buttons.media.playAndPauseButton import PlayAndPauseButton
+from buttons.media.nextTrackButton import NextTrackButton
+from buttons.media.previousTrackButton import PreviousTrackButton
 
 
 lp = launchpad.LaunchpadMk2()
@@ -13,21 +16,27 @@ else:
     print(" - Launchpad Mk2: Could not find Launchpad")
 lp.ButtonFlush()
 
-print(" - Testing LedAllOn()")
-for i in [5, 21, 79, 3]:
-    lp.LedAllOn(i)
-    time.wait(500)
+lp.LedAllOn(500)
+time.wait(500)
 lp.LedAllOn(0)
-print(" - Test successfully")
 
 # Init youtube button
 ytButton = YoutubeButton(lp)
 
-# Set Netflix Button Dark Red
+# Init Netflix button
 netflixButton = NetflixButton(lp)
 
-# Set Spotify Button Green
+# Init Spotify button
 spotifyButton = SpotifyMainButton(lp)
+
+# Init Play / Pause Button
+playPauseButton = PlayAndPauseButton(lp)
+
+# Init Next Track Button
+nextTrackButton = NextTrackButton(lp)
+
+# Init Previous Track Button
+prevTrackButton = PreviousTrackButton(lp)
 
 while True:
     clickedButton = lp.ButtonStateXY()
@@ -47,6 +56,16 @@ while True:
         if clickedButton == spotifyButton.get_position():
             spotifyButton.clicked()
 
+        if clickedButton == playPauseButton.get_position():
+            playPauseButton.clicked()
+
+        if clickedButton == nextTrackButton.get_position():
+            nextTrackButton.clicked()
+
+        if clickedButton == prevTrackButton.get_position():
+            prevTrackButton.clicked()
+
+        # Cancel program
         if clickedButton == [8, 8, 127]:
             lp.LedAllOn(79)
             time.wait(500)
