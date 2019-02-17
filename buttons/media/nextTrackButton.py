@@ -9,4 +9,4 @@ class NextTrackButton(Button):
 
     def clicked(self):
         press('nexttrack')
-        self.blink(0.25, 2)
+        self.blink(0.25, 1)

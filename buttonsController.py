@@ -6,27 +6,19 @@ from buttons.spotifyButton import SpotifyMainButton
 from buttons.media.playAndPauseButton import PlayAndPauseButton
 from buttons.media.nextTrackButton import NextTrackButton
 from buttons.media.previousTrackButton import PreviousTrackButton
+from buttons.headset.muteVoiceButton import MuteVoiceButton
 
 
 def setup_buttons(lp):
-    # Init youtube button
     ytButton = YoutubeButton(lp)
-
-    # Init Netflix button
     netflixButton = NetflixButton(lp)
-
-    # Init Spotify button
     spotifyButton = SpotifyMainButton(lp)
-
-    # Init Play / Pause Button
     playPauseButton = PlayAndPauseButton(lp)
-
-    # Init Next Track Button
     nextTrackButton = NextTrackButton(lp)
-
-    # Init Previous Track Button
     prevTrackButton = PreviousTrackButton(lp)
+    muteVoiceButton = MuteVoiceButton(lp)
 
+    # Loop for checking if a button got pressed
     while True:
         clickedButton = lp.ButtonStateXY()
         if clickedButton and clickedButton[2] == 127:
@@ -53,6 +45,9 @@ def setup_buttons(lp):
 
             if clickedButton == prevTrackButton.get_position():
                 prevTrackButton.clicked()
+
+            if clickedButton == muteVoiceButton.get_position():
+                muteVoiceButton.clicked()
 
             # Cancel program
             if clickedButton == [8, 8, 127]:
