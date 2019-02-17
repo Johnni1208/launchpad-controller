@@ -7,4 +7,6 @@ Current functionality:
     - Play/Pause
     - Next Track
     - Previous Track
+  - Mute Voice with Hotkey
+  - Mute all with Hotkey
   
